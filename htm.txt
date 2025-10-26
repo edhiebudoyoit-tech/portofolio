@@ -1,0 +1,79 @@
+import { NextResponse } from 'next/server'
+
+const products = [
+  {
+    id: 1,
+    name: 'Bata Merah Standar',
+    category: 'merah',
+    price: 'Rp 550/biji',
+    description: 'Bata merah berkualitas tinggi, kuat dan tahan lama',
+    features: ['Kuat', 'Tahan Api', 'Harga Terjangkau'],
+    stock: 10000,
+    minOrder: 1000
+  },
+  {
+    id: 2,
+    name: 'Bata Bolong',
+    category: 'Merah',
+    price: 'Rp 630/biji',
+    description: 'Bata ringan modern, cepat pemasangan dan efisien',
+    features: ['Ringan', 'Cepat Pasang', 'Bebas Rayap'],
+    stock: 5000,
+    minOrder: 100
+  },
+  {
+    id: 3,
+    name: 'Batako Press',
+    category: 'batako',
+    price: 'Rp 3.500/biji',
+    description: 'Batako press dengan presisi tinggi untuk bangunan kokoh',
+    features: ['Presisi', 'Kokoh', 'Hemat'],
+    stock: 8000,
+    minOrder: 500
+  },
+  {
+    id: 4,
+    name: 'Bata Ekspos',
+    category: 'merah',
+    price: 'Rp 550/biji',
+    description: 'Bata merah ekspos untuk finishing estetika bangunan',
+    features: ['Estetik', 'Alami', 'Modern'],
+    stock: 3000,
+    minOrder: 500
+  },
+  {
+    id: 5,
+    name: 'Bata Celcon',
+    category: 'ringan',
+    price: 'Rp 18.000/m²',
+    description: 'Bata celcon premium dengan kualitas terbaik',
+    features: ['Premium', 'Tahan Air', 'Isolasi Panas'],
+    stock: 2000,
+    minOrder: 50
+  },
+  {
+    id: 6,
+    name: 'Batako Semen',
+    category: 'batako',
+    price: 'Rp 2.800/biji',
+    description: 'Batako semen untuk konstruksi ekonomis',
+    features: ['Ekonomis', 'Praktis', 'Cepat Kering'],
+    stock: 6000,
+    minOrder: 300
+  }
+]
+
+export async function GET() {
+  try {
+    return NextResponse.json({
+      success: true,
+      data: products
+    })
+  } catch (error) {
+    console.error('Products API error:', error)
+    return NextResponse.json(
+      { error: 'Terjadi kesalahan saat mengambil data produk' },
+      { status: 500 }
+    )
+  }
+}
